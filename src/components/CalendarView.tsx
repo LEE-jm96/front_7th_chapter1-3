@@ -121,13 +121,16 @@ const EventCell = ({
           <Repeat fontSize="small" />
         </Tooltip>
       )}
-      <Typography
-        variant="caption"
-        noWrap
-        sx={{ fontSize: '0.75rem', lineHeight: 1.2 }}
-      >
-        {event.title}
-      </Typography>
+      {/* /*PR: tooltip을 추가하여 클릭 시 툴팁이 나오도록 수정*/ }
+      <Tooltip title={event.title} placement="top">
+        <Typography
+          variant="caption"
+          noWrap
+          sx={{ fontSize: '0.75rem', lineHeight: 1.2 }}
+        >
+          {event.title}
+        </Typography>
+      </Tooltip>
     </Stack>
   </Box>
 );
@@ -346,7 +349,7 @@ export const CalendarView = ({
   };
 
   return (
-    <Stack flex={1} spacing={5}>
+    <Stack data-testid="calendar-view" flex={1} spacing={5}>
       <Typography variant="h4">일정 보기</Typography>
 
       <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center">
@@ -376,3 +379,5 @@ export const CalendarView = ({
     </Stack>
   );
 };
+
+export default CalendarView;
