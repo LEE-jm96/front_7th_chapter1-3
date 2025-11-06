@@ -21,6 +21,8 @@ const meta: Meta<typeof EventFormPanel> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// 폼 컨트롤 상태 스토리
+
 // 상태 1: 초기 상태 - 빈 폼 (새 일정 추가)
 export const EmptyForm: Story = {
   args: {
