@@ -47,6 +47,13 @@ test.describe('드래그 앤 드롭 일정 관리 E2E 테스트', () => {
     await page.locator('[data-calendar-cell="true"]').first().waitFor({ timeout: 10000 });
   });
 
+  /**
+  * NOTE: 페어 프로그래밍
+  *
+  * 드라이버: 고다솜, 양진성
+  * 네비게이터: 정나리, 이정민
+  */
+
   test('일정을 다른 날짜로 드래그앤드롭하면 날짜가 변경된다', async ({ page }) => {
     // 로딩 완료 대기
     await page.waitForSelector('[data-testid="event-list"]', { timeout: 15000 });
