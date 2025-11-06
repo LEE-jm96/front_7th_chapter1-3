@@ -1,6 +1,7 @@
-import { test, expect, Page } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
+
+import { test, expect, Page } from '@playwright/test';
 
 const E2E_JSON_PATH = path.resolve('./src/__mocks__/response/e2e.json');
 const BACKUP_PATH = path.resolve('./src/__mocks__/response/e2e.backup.json');
@@ -62,7 +63,7 @@ test.describe('반복 일정 관리 워크플로우', () => {
     // 생성 확인
     const eventListPanel = page.locator('[data-testid="event-list"]');
     await expect(eventListPanel).toContainText('새로운 반복일정');
-    
+
     // 반복 일정 개수 확인 (2일 동안 매일 = 2개)
     const createCount = await eventListPanel.locator('text=새로운 반복일정').count();
     expect(createCount).toBe(2);
@@ -91,7 +92,7 @@ test.describe('반복 일정 관리 워크플로우', () => {
     await page.waitForTimeout(1000);
 
     const eventListPanel = page.locator('[data-testid="event-list"]');
-     
+
     // 모든 반복 일정 수정 확인 (4개 모두 수정됨)
     const updateCount = await eventListPanel.locator('text=반복일정 전체 수정').count();
     expect(updateCount).toBe(4);
@@ -104,7 +105,7 @@ test.describe('반복 일정 관리 워크플로우', () => {
 
     const eventListPanel = page.locator('[data-testid="event-list"]');
     await expect(eventListPanel).toContainText('반복일정');
-    
+
     // 반복 일정 4개에서 단건 삭제 -> 총 3개
     const createCount = await eventListPanel.locator('text=반복일정').count();
     expect(createCount).toBe(3);

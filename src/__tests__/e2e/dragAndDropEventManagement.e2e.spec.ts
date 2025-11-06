@@ -1,6 +1,7 @@
-import { test, expect } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
+
+import { test, expect } from '@playwright/test';
 
 const E2E_JSON_PATH = path.resolve('./src/__mocks__/response/e2e.json');
 const BACKUP_PATH = path.resolve('./src/__mocks__/response/e2e.backup.json');
@@ -48,11 +49,11 @@ test.describe('드래그 앤 드롭 일정 관리 E2E 테스트', () => {
   });
 
   /**
-  * NOTE: 페어 프로그래밍
-  *
-  * 드라이버: 고다솜, 양진성
-  * 네비게이터: 정나리, 이정민
-  */
+   * NOTE: 페어 프로그래밍
+   *
+   * 드라이버: 고다솜, 양진성
+   * 네비게이터: 정나리, 이정민
+   */
 
   test('일정을 다른 날짜로 드래그앤드롭하면 날짜가 변경된다', async ({ page }) => {
     // 로딩 완료 대기
@@ -63,15 +64,17 @@ test.describe('드래그 앤 드롭 일정 관리 E2E 테스트', () => {
       // 1. 드래그 가능한 첫 번째 이벤트 찾기
       const sourceEvent = page.locator('[draggable="true"]').first();
       await sourceEvent.waitFor({ state: 'visible', timeout: 15000 });
-      
+
       // 2. 모든 캘린더 셀 가져오기
       const calendarCells = page.locator('[data-calendar-cell="true"]');
       await calendarCells.first().waitFor({ state: 'visible', timeout: 15000 });
-      
+
       // 3. 셀 중에서 "15" 텍스트를 포함하는 셀 찾기
-      const targetCell = calendarCells.filter({
-        hasText: '15',
-      }).first();
+      const targetCell = calendarCells
+        .filter({
+          hasText: '15',
+        })
+        .first();
 
       // 4. 타겟 셀이 존재하는지 확인
       const cellCount = await targetCell.count().catch(() => 0);
@@ -79,7 +82,7 @@ test.describe('드래그 앤 드롭 일정 관리 E2E 테스트', () => {
         console.warn('Target cell with "15" not found, using last cell instead');
         const lastCell = calendarCells.last();
         await lastCell.waitFor({ state: 'visible', timeout: 15000 });
-        
+
         // 첫 번째 이벤트를 마지막 셀로 드래그
         await sourceEvent.hover();
         await page.waitForTimeout(1000);
@@ -90,14 +93,17 @@ test.describe('드래그 앤 드롭 일정 관리 E2E 테스트', () => {
         await page.waitForTimeout(1000);
         await sourceEvent.dragTo(targetCell, { timeout: 15000 });
       }
-      
+
       await page.waitForTimeout(2000);
 
       // 6. 성공 메시지 확인 (Alert 메시지)
       // AlertTitle에 메시지가 표시됨
       const alertMsg = page.locator('div[role="alert"]');
-      const hasSuccessMsg = await alertMsg.locator('text=/일정이.*이동되었습니다/').isVisible({ timeout: 5000 }).catch(() => false);
-      
+      const hasSuccessMsg = await alertMsg
+        .locator('text=/일정이.*이동되었습니다/')
+        .isVisible({ timeout: 5000 })
+        .catch(() => false);
+
       if (!hasSuccessMsg) {
         // "일정이" 포함된 메시지 확인
         await expect(alertMsg).toContainText('일정이');
@@ -118,7 +124,10 @@ test.describe('드래그 앤 드롭 일정 관리 E2E 테스트', () => {
     await page.waitForSelector('[data-testid="event-list"]');
 
     // 1. 반복 아이콘이 있는 이벤트 찾기
-    const recurringEvent = page.locator('button').filter({ has: page.locator('[data-testid="RepeatIcon"]') }).first();
+    const recurringEvent = page
+      .locator('button')
+      .filter({ has: page.locator('[data-testid="RepeatIcon"]') })
+      .first();
 
     if (await recurringEvent.isVisible()) {
       // 2. 반복 이벤트의 위치 파악
@@ -158,4 +167,3 @@ test.describe('드래그 앤 드롭 일정 관리 E2E 테스트', () => {
     expect(isVisible).toBe(false);
   });
 });
-

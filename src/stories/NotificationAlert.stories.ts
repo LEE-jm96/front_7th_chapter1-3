@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { NotificationAlert } from '../components/NotificationAlert';
 
 const meta: Meta<typeof NotificationAlert> = {
@@ -42,8 +43,7 @@ export const LongMessage: Story = {
   args: {
     notifications: [
       {
-        message:
-          '새로운 일정이 추가되었습니다. 내일 오전 10시 팀 회의 회의실 A에서 진행됩니다.',
+        message: '새로운 일정이 추가되었습니다. 내일 오전 10시 팀 회의 회의실 A에서 진행됩니다.',
       },
       { message: '중복된 일정이 감지되었습니다. 확인해주세요.' },
     ],

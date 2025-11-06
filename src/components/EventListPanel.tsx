@@ -9,15 +9,16 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+
 import { Event, RepeatType } from '../types';
 
 interface EventListPanelProps {
   searchTerm: string;
-  setSearchTerm: (term: string) => void;
+  setSearchTerm: (_term: string) => void;
   filteredEvents: Event[];
   notifiedEvents: string[];
-  onEditEvent: (event: Event) => void;
-  onDeleteEvent: (event: Event) => void;
+  onEditEvent: (_event: Event) => void;
+  onDeleteEvent: (_event: Event) => void;
 }
 
 const notificationOptions = [
@@ -114,9 +115,8 @@ export const EventListPanel = ({
                 <Typography>
                   알림:{' '}
                   {
-                    notificationOptions.find(
-                      (option) => option.value === event.notificationTime
-                    )?.label
+                    notificationOptions.find((option) => option.value === event.notificationTime)
+                      ?.label
                   }
                 </Typography>
               </Stack>

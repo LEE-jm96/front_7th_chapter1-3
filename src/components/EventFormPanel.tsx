@@ -11,37 +11,38 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import React from 'react';
+
 import { RepeatType } from '../types';
 
 interface EventFormPanelProps {
   editingEvent: boolean;
   title: string;
-  setTitle: (value: string) => void;
+  setTitle: (_value: string) => void;
   date: string;
-  setDate: (value: string) => void;
+  setDate: (_value: string) => void;
   startTime: string;
-  handleStartTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleStartTimeChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   startTimeError: string | null;
   endTime: string;
-  handleEndTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEndTimeChange: (_e: React.ChangeEvent<HTMLInputElement>) => void;
   endTimeError: string | null;
   description: string;
-  setDescription: (value: string) => void;
+  setDescription: (_value: string) => void;
   location: string;
-  setLocation: (value: string) => void;
+  setLocation: (_value: string) => void;
   category: string;
-  setCategory: (value: string) => void;
+  setCategory: (_value: string) => void;
   isRepeating: boolean;
-  setIsRepeating: (value: boolean) => void;
+  setIsRepeating: (_value: boolean) => void;
   repeatType: RepeatType;
-  setRepeatType: (value: RepeatType) => void;
+  setRepeatType: (_value: RepeatType) => void;
   repeatInterval: number;
-  setRepeatInterval: (value: number) => void;
+  setRepeatInterval: (_value: number) => void;
   repeatEndDate: string;
-  setRepeatEndDate: (value: string) => void;
+  setRepeatEndDate: (_value: string) => void;
   notificationTime: number;
-  setNotificationTime: (value: number) => void;
+  setNotificationTime: (_value: number) => void;
   onSubmit: () => void;
 }
 

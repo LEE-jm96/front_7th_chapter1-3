@@ -1,6 +1,7 @@
-import { test, expect, Page } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
+
+import { test, expect, Page } from '@playwright/test';
 
 const E2E_JSON_PATH = path.resolve('./src/__mocks__/response/e2e.json');
 const BACKUP_PATH = path.resolve('./src/__mocks__/response/e2e.backup.json');
@@ -48,11 +49,11 @@ test.describe('날짜 클릭으로 일정 생성 E2E 테스트', () => {
 
     // 1. 캘린더에서 20일 셀 클릭
     const calendarCell = page.locator('[data-calendar-cell="true"]').filter({
-        hasText: /^20$/,
+      hasText: /^20$/,
     });
     await calendarCell.first().click();
     await page.waitForTimeout(500);
- 
+
     // 2. 날짜가 폼에 바인딩되었는지 확인
     const dateInput = page.locator('input[id="date"]');
     await expect(dateInput).toHaveValue('2025-11-20');
@@ -100,4 +101,3 @@ test.describe('날짜 클릭으로 일정 생성 E2E 테스트', () => {
     await expect(eventList).toContainText('14:00');
   });
 });
-

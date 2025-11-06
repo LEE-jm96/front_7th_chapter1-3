@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
+import React from 'react';
 
 import { useEventForm } from '../../hooks/useEventForm';
 import { Event } from '../../types';
@@ -158,7 +159,7 @@ describe('useEventForm 시간 검증', () => {
     act(() => {
       result.current.handleStartTimeChange({
         target: { value: '12:00' },
-      } as React.ChangeEvent<HTMLInputElement>);
+      } as unknown as React.ChangeEvent<HTMLInputElement>);
     });
 
     expect(result.current.startTimeError).not.toBeNull();
@@ -175,7 +176,7 @@ describe('useEventForm 시간 검증', () => {
     act(() => {
       result.current.handleEndTimeChange({
         target: { value: '11:00' },
-      } as React.ChangeEvent<HTMLInputElement>);
+      } as unknown as React.ChangeEvent<HTMLInputElement>);
     });
 
     expect(result.current.endTimeError).not.toBeNull();
@@ -192,7 +193,7 @@ describe('useEventForm 시간 검증', () => {
     act(() => {
       result.current.handleEndTimeChange({
         target: { value: '11:00' },
-      } as React.ChangeEvent<HTMLInputElement>);
+      } as unknown as React.ChangeEvent<HTMLInputElement>);
     });
 
     expect(result.current.endTimeError).toBeNull();
@@ -208,7 +209,7 @@ describe('useEventForm 시간 검증', () => {
     act(() => {
       result.current.handleStartTimeChange({
         target: { value: '10:00' },
-      } as React.ChangeEvent<HTMLInputElement>);
+      } as unknown as React.ChangeEvent<HTMLInputElement>);
     });
 
     expect(result.current.startTimeError).toBeNull();

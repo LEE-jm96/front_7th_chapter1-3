@@ -36,7 +36,7 @@ describe('날짜 클릭으로 일정 생성 통합 테스트', () => {
     // 캘린더에서 특정 날짜 셀 클릭 (10월 15일)
     // data-calendar-cell 속성으로 TableCell을 찾음
     const calendarCells = document.querySelectorAll('[data-calendar-cell="true"]');
-    
+
     // 15일을 찾기 (textContent로 검색)
     let targetCell: Element | undefined;
     for (const cell of calendarCells) {

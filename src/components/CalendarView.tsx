@@ -14,6 +14,8 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import React from 'react';
+
 import { Event, RepeatType } from '../types';
 import {
   formatDate,
@@ -23,18 +25,17 @@ import {
   getWeekDates,
   getWeeksAtMonth,
 } from '../utils/dateUtils';
-import React from 'react';
 
 interface CalendarViewProps {
   view: 'week' | 'month';
-  setView: (view: 'week' | 'month') => void;
+  setView: (_view: 'week' | 'month') => void;
   currentDate: Date;
   holidays: Record<string, string>;
-  navigate: (direction: 'prev' | 'next') => void;
+  navigate: (_direction: 'prev' | 'next') => void;
   filteredEvents: Event[];
   notifiedEvents: string[];
-  onEventDrop?: (eventId: string, newDate: string) => void;
-  onDateClick?: (date: string) => void;
+  onEventDrop?: (_eventId: string, _newDate: string) => void;
+  onDateClick?: (_date: string) => void;
 }
 
 const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
@@ -121,12 +122,15 @@ const EventCell = ({
           <Repeat fontSize="small" />
         </Tooltip>
       )}
-      {/* /*PR: tooltip을 추가하여 클릭 시 툴팁이 나오도록 수정*/ }
+      {/* PR: tooltip을 추가하여 클릭 시 툴팁이 나오도록 수정 */}
       <Tooltip title={event.title} placement="top">
         <Typography
           variant="caption"
           noWrap
-          sx={{ fontSize: '0.75rem', lineHeight: 1.2 }}
+          sx={{
+            fontSize: '0.75rem',
+            lineHeight: 1.2,
+          }}
         >
           {event.title}
         </Typography>
@@ -152,7 +156,7 @@ export const CalendarView = ({
     // CalendarView 내에서만 드래그 허용
     const target = e.currentTarget as HTMLElement;
     const cellAttr = target.getAttribute('data-calendar-cell');
-    
+
     // 유효한 셀 (data-calendar-cell="true")에서만 drop 허용
     if (cellAttr === 'true') {
       e.preventDefault();
@@ -170,11 +174,11 @@ export const CalendarView = ({
   const handleDrop = (e: React.DragEvent, newDate: string) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     // 드롭 타겟이 유효한 셀인지 확인
     const target = e.currentTarget as HTMLElement;
     const cellAttr = target.getAttribute('data-calendar-cell');
-    
+
     // 드래그 상태 항상 초기화
     setDraggedEventId(null);
 
@@ -218,8 +222,12 @@ export const CalendarView = ({
                       data-calendar-cell="true"
                       onDragOver={handleDragOver}
                       onDragLeave={handleDragLeave}
-                      onDrop={(e) => handleDrop(e as any, dateStr)}
-                      onClick={() => eventsOnDate.length === 0 && onDateClick?.(dateStr)}
+                      onDrop={(e) => handleDrop(e as React.DragEvent, dateStr)}
+                      onClick={() => {
+                        if (eventsOnDate.length === 0) {
+                          onDateClick?.(dateStr);
+                        }
+                      }}
                       sx={{
                         height: '120px',
                         verticalAlign: 'top',
@@ -227,7 +235,9 @@ export const CalendarView = ({
                         padding: 1,
                         border: '1px solid #e0e0e0',
                         overflow: 'hidden',
-                        backgroundColor: draggedEventId ? 'rgba(100, 100, 100, 0.05)' : 'transparent',
+                        backgroundColor: draggedEventId
+                          ? 'rgba(100, 100, 100, 0.05)'
+                          : 'transparent',
                         transition: 'background-color 0.2s',
                       }}
                     >
@@ -295,8 +305,12 @@ export const CalendarView = ({
                         data-calendar-cell={day ? 'true' : 'false'}
                         onDragOver={handleDragOver}
                         onDragLeave={handleDragLeave}
-                        onDrop={(e) => day && handleDrop(e as any, dateString)}
-                        onClick={() => day && eventsOnDate.length === 0 && onDateClick?.(dateString)}
+                        onDrop={(e) => day && handleDrop(e as React.DragEvent, dateString)}
+                        onClick={() => {
+                          if (day && eventsOnDate.length === 0) {
+                            onDateClick?.(dateString);
+                          }
+                        }}
                         sx={{
                           height: '120px',
                           verticalAlign: 'top',
@@ -305,7 +319,9 @@ export const CalendarView = ({
                           border: '1px solid #e0e0e0',
                           overflow: 'hidden',
                           position: 'relative',
-                          backgroundColor: draggedEventId ? 'rgba(100, 100, 100, 0.05)' : 'transparent',
+                          backgroundColor: draggedEventId
+                            ? 'rgba(100, 100, 100, 0.05)'
+                            : 'transparent',
                           transition: 'background-color 0.2s',
                         }}
                       >

@@ -1,6 +1,7 @@
-import { test, expect, Page } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
+
+import { test, expect, Page } from '@playwright/test';
 
 const E2E_JSON_PATH = path.resolve('./src/__mocks__/response/e2e.json');
 const BACKUP_PATH = path.resolve('./src/__mocks__/response/e2e.backup.json');
@@ -42,9 +43,9 @@ test.describe('기본 일정 관리 워크플로우', () => {
     await page.close();
   });
 
-  test('일정 조회 기능', async() => {
+  test('일정 조회 기능', async () => {
     const eventListPanel = page.locator('[data-testid="event-list"]');
-    
+
     await expect(eventListPanel).toContainText('팀 회의');
     await expect(eventListPanel).toContainText('반복일정');
     await expect(eventListPanel).toContainText('알림 테스트');

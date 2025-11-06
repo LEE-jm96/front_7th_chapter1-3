@@ -1,6 +1,6 @@
+import { Box, Stack } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
-import { Box, Stack } from '@mui/material';
 
 import { CalendarView } from './components/CalendarView';
 import { EventFormPanel } from './components/EventFormPanel';
@@ -266,9 +266,10 @@ function App() {
       if (response.ok) {
         // 서버 업데이트 후 이벤트 리스트 다시 불러오기
         await fetchEvents();
-        const message = eventToMove.repeat.type !== 'none' 
-          ? `일정이 ${newDate}로 이동되었습니다. (반복 설정이 해제되었습니다.)`
-          : `일정이 ${newDate}로 이동되었습니다.`;
+        const message =
+          eventToMove.repeat.type !== 'none'
+            ? `일정이 ${newDate}로 이동되었습니다. (반복 설정이 해제되었습니다.)`
+            : `일정이 ${newDate}로 이동되었습니다.`;
         enqueueSnackbar(message, { variant: 'success' });
       } else {
         throw new Error('Failed to update event');

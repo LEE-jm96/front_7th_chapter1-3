@@ -1,7 +1,8 @@
+import { Box } from '@mui/material';
 import type { Meta, StoryObj } from '@storybook/react';
+
 import { CalendarView } from '../components/CalendarView';
 import { Event } from '../types';
-import { Box } from '@mui/material';
 
 const meta: Meta<typeof CalendarView> = {
   title: 'Components/CalendarView',
@@ -406,7 +407,19 @@ export const EventsWithRepeatPatterns: Story = {
         repeat: { type: 'yearly', interval: 1, endDate: '' },
       },
     ],
-    notifiedEvents: ['15-1', '15-2', '15-3', '15-4', '16-1', '16-2', '16-3', '16-4', '16-5', '17', '18'],
+    notifiedEvents: [
+      '15-1',
+      '15-2',
+      '15-3',
+      '15-4',
+      '16-1',
+      '16-2',
+      '16-3',
+      '16-4',
+      '16-5',
+      '17',
+      '18',
+    ],
     onEventDrop: () => {},
     onDateClick: () => {},
   },
@@ -574,7 +587,8 @@ export const TextLengthWithTooltip: Story = {
       },
       {
         id: '31',
-        title: '초장문 제목: 매월 첫주 월요일 전사 임원진 정기 전략 회의 및 분기 OKR 최종 확정 회의',
+        title:
+          '초장문 제목: 매월 첫주 월요일 전사 임원진 정기 전략 회의 및 분기 OKR 최종 확정 회의',
         date: '2025-10-06',
         startTime: '10:00',
         endTime: '11:00',
@@ -600,13 +614,13 @@ export const TextLengthWithTooltip: Story = {
       <Box data-chromatic-tooltip sx={{ position: 'relative' }}>
         <style>
           {`
-            /* Chromatic에서 Tooltip 항상 표시 */
-            [role="tooltip"] {
-              visibility: visible !important;
-              opacity: 1 !important;
-              pointer-events: auto !important;
-            }
-          `}
+          /* Chromatic에서 Tooltip 항상 표시 */
+          [role="tooltip"] {
+            visibility: visible !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+          }
+        `}
         </style>
         <Story />
       </Box>

@@ -7,7 +7,7 @@ interface Notification {
 
 interface NotificationAlertProps {
   notifications: Notification[];
-  onRemove: (index: number) => void;
+  onRemove: (_index: number) => void;
 }
 
 export const NotificationAlert = ({ notifications, onRemove }: NotificationAlertProps) => {

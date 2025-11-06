@@ -1,6 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { EventFormPanel } from '../components/EventFormPanel';
 import { Box } from '@mui/material';
+import type { Meta, StoryObj } from '@storybook/react';
+
+import { EventFormPanel } from '../components/EventFormPanel';
 
 const meta: Meta<typeof EventFormPanel> = {
   title: 'Components/Forms/EventFormPanel',
@@ -275,8 +276,7 @@ export const LongTextInput: Story = {
     endTime: '12:00',
     handleEndTimeChange: (e) => console.log('endTime:', e.target.value),
     endTimeError: null,
-    description:
-      '3분기 성과 검토 및 4분기 목표 설정. 모든 팀장 필수 참석. 자료 사전 준비 필요.',
+    description: '3분기 성과 검토 및 4분기 목표 설정. 모든 팀장 필수 참석. 자료 사전 준비 필요.',
     setDescription: (value) => console.log('setDescription:', value),
     location: '컨퍼런스 홀 B (서울 강남구 테헤란로 123 빌딩 5층)',
     setLocation: (value) => console.log('setLocation:', value),
@@ -295,4 +295,3 @@ export const LongTextInput: Story = {
     onSubmit: () => alert('일정 추가됨'),
   },
 };
-

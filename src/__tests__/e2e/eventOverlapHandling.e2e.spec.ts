@@ -1,6 +1,7 @@
-import { test, expect, Page } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
+
+import { test, expect, Page } from '@playwright/test';
 
 const E2E_JSON_PATH = path.resolve('./src/__mocks__/response/e2e.json');
 const BACKUP_PATH = path.resolve('./src/__mocks__/response/e2e.backup.json');
@@ -61,20 +62,20 @@ test.describe('일정 겹침 처리 워크플로우', () => {
   });
 
   test('겹치는 일정 추가 및 다이얼로그 호출 -> 취소', async () => {
-     // 겹치는 일정 추가
-     await page.getByRole('textbox', { name: '제목' }).fill('겹치는 일정');
-     await page.getByRole('textbox', { name: '날짜' }).fill('2025-11-21');
-     await page.getByRole('textbox', { name: '시작 시간' }).fill('09:00');
-     await page.getByRole('textbox', { name: '종료 시간' }).fill('11:00');
- 
-     const submitButton = page.locator('button[data-testid="event-submit-button"]');
-     await submitButton.click();
-     await page.waitForTimeout(1000);
- 
-     // 취소 클릭
-     await page.getByRole('button', { name: '취소' }).click();
- 
-     const eventListPanel = page.locator('[data-testid="event-list"]');
-     await expect(eventListPanel).not.toContainText('겹치는 일정');
+    // 겹치는 일정 추가
+    await page.getByRole('textbox', { name: '제목' }).fill('겹치는 일정');
+    await page.getByRole('textbox', { name: '날짜' }).fill('2025-11-21');
+    await page.getByRole('textbox', { name: '시작 시간' }).fill('09:00');
+    await page.getByRole('textbox', { name: '종료 시간' }).fill('11:00');
+
+    const submitButton = page.locator('button[data-testid="event-submit-button"]');
+    await submitButton.click();
+    await page.waitForTimeout(1000);
+
+    // 취소 클릭
+    await page.getByRole('button', { name: '취소' }).click();
+
+    const eventListPanel = page.locator('[data-testid="event-list"]');
+    await expect(eventListPanel).not.toContainText('겹치는 일정');
   });
 });

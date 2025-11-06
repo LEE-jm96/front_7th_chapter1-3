@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+
 import RecurringEventDialog from '../components/RecurringEventDialog';
 import { Event } from '../types';
 
@@ -30,8 +31,7 @@ export const EditMode: Story = {
   args: {
     open: true,
     onClose: () => alert('닫혔습니다'),
-    onConfirm: (editSingleOnly) =>
-      alert(editSingleOnly ? '이 일정만 수정' : '전체 반복 일정 수정'),
+    onConfirm: (editSingleOnly) => alert(editSingleOnly ? '이 일정만 수정' : '전체 반복 일정 수정'),
     event: mockEvent,
     mode: 'edit',
   },
@@ -41,8 +41,7 @@ export const DeleteMode: Story = {
   args: {
     open: true,
     onClose: () => alert('닫혔습니다'),
-    onConfirm: (editSingleOnly) =>
-      alert(editSingleOnly ? '이 일정만 삭제' : '전체 반복 일정 삭제'),
+    onConfirm: (editSingleOnly) => alert(editSingleOnly ? '이 일정만 삭제' : '전체 반복 일정 삭제'),
     event: mockEvent,
     mode: 'delete',
   },
@@ -52,8 +51,7 @@ export const Closed: Story = {
   args: {
     open: false,
     onClose: () => alert('닫혔습니다'),
-    onConfirm: (editSingleOnly) =>
-      alert(editSingleOnly ? '이 일정만 수정' : '전체 반복 일정 수정'),
+    onConfirm: (editSingleOnly) => alert(editSingleOnly ? '이 일정만 수정' : '전체 반복 일정 수정'),
     event: mockEvent,
     mode: 'edit',
   },
