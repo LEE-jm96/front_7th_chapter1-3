@@ -12,7 +12,7 @@ import globals from 'globals';
 
 export default [
   {
-    ignores: ['**/node_modules/**', '**/dist/**', '.storybook/**', '**/playwright-report/**'],
+    ignores: ['**/node_modules/**', '**/dist/**', '.storybook/**', '**/playwright-report/**', '**/storybook-static/**', '**/test-results/**'],
   },
   // Base configuration for all files
   {
@@ -56,7 +56,7 @@ export default [
   // Main configuration for source files
   {
     files: ['**/*.{ts,tsx}'],
-    ignores: ['node_modules/**', 'dist/**', '.storybook', '*playwright-report'],
+    ignores: ['node_modules/**', 'dist/**', '.storybook', '*playwright-report', '*storybook-static', '*test-results'],
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooksPlugin,
@@ -72,7 +72,14 @@ export default [
       ...typescriptPlugin.configs.recommended.rules,
 
       // ESLint rules
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
 
       // React rules
       'react/prop-types': 'off',
